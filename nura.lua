@@ -62,7 +62,7 @@ tab4:AddToggle({
     Callback = function(v)
         autoRoll = v
         if autoRoll then
-            autoR
+            autoR()
         end
     end
 })

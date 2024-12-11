@@ -46,13 +46,13 @@ tab4:AddToggle({
     Callback = function(v)
         autoRoll = v
         if autoRoll then
-            while true do
+            while autoRoll do
                 task.wait()
                 game:GetService("ReplicatedStorage").Remotes.RollFunction:InvokeServer()
-            
+                
                 local r = game:GetService("ReplicatedStorage")
                 local m = r:FindFirstChild("Mounts")
-            
+                
                 if m then
                     for _, i in pairs(m:GetChildren()) do
                         r.Remotes.SpawnMount:InvokeServer(i.Name)

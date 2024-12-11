@@ -33,22 +33,6 @@ local tab4 = Window:MakeTab({
     PremiumOnly = false
 })
 
-function autoR()
-    while true do
-        task.wait()
-        game:GetService("ReplicatedStorage").Remotes.RollFunction:InvokeServer()
-    
-        local r = game:GetService("ReplicatedStorage")
-        local m = r:FindFirstChild("Mounts")
-    
-        if m then
-            for _, i in pairs(m:GetChildren()) do
-                r.Remotes.SpawnMount:InvokeServer(i.Name)
-            end
-        end
-    end
-end
-
 tab3:AddButton({
     Name = "Inf Money",
     Callback = function()
@@ -62,7 +46,19 @@ tab4:AddToggle({
     Callback = function(v)
         autoRoll = v
         if autoRoll then
-            autoR()
+            while true do
+                task.wait()
+                game:GetService("ReplicatedStorage").Remotes.RollFunction:InvokeServer()
+            
+                local r = game:GetService("ReplicatedStorage")
+                local m = r:FindFirstChild("Mounts")
+            
+                if m then
+                    for _, i in pairs(m:GetChildren()) do
+                        r.Remotes.SpawnMount:InvokeServer(i.Name)
+                    end
+                end
+            end
         end
     end
 })
